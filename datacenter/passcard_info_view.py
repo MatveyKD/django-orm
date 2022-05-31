@@ -14,6 +14,19 @@ def passcard_info_view(request, passcode):
             'is_strange': False
         },
     ]
+
+    visits = Visit.objects.filter(passcard=passcard)
+    for visit in visits:
+        visit_duration = visit.get_duration()
+        hours = visit_duration.total_seconds() // 3600
+        minutes = visit_duration.total_seconds() // 60
+        this_passcard_visits.append({
+            'entered_at':visit.entered_at,
+            'duration':f'{hours}:{minutes}',
+            'is_strange': visit.is_long()
+        })
+    print(this_passcard_visits)
+
     context = {
         'passcard': passcard,
         'this_passcard_visits': this_passcard_visits
