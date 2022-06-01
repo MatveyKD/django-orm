@@ -18,7 +18,6 @@ def passcard_info_view(request, passcode):
             'duration': f'{hours}:{minutes}',
             'is_strange': visit.is_long()
         })
-    print(serialized_passcard_visits)
 
     context = {
         'passcard': passcard,
