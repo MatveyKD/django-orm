@@ -20,12 +20,6 @@ def get_duration(visit):
     time_inside = f"{hours}:{minutes}"
     print("Находится", time_inside)
     return located_time
-    #name = visit.passcard.owner_name
-    #non_closed_visits.append({
-        #'who_entered': name,
-        #'entered_at': entered_at,
-        #'duration': time_inside
-    #})
 
 def is_visit_long(visit, minutes=60):
     duration = get_duration(visit)
@@ -34,7 +28,6 @@ def is_visit_long(visit, minutes=60):
 def storage_information_view(request):
     non_closed_visits = []
     
-    # Программируем здесь
     active_passcards = Passcard.objects.filter(is_active=True)
     now = datetime.datetime.now().astimezone()
     print(now)
@@ -48,9 +41,7 @@ def storage_information_view(request):
         seconds = located_time.total_seconds()
         hours = int(seconds // 3600)
         minutes = int(seconds % 3600 // 60)
-        #seconds = int(seconds % 3600 // 60 // 60)
         time_inside = f"{hours}:{minutes}"
-        #print("Находится", time_inside)
         name = visit.passcard.owner_name
         non_closed_visits.append({
             'who_entered': name,
@@ -61,6 +52,6 @@ def storage_information_view(request):
 
 
     context = {
-        'non_closed_visits': non_closed_visits,  # не закрытые посещения
+        'non_closed_visits': non_closed_visits,
     }
     return render(request, 'storage_information.html', context)
