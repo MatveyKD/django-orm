@@ -21,13 +21,16 @@ def get_duration(visit):
     print("Находится", time_inside)
     return located_time
 
+
 def is_visit_long(visit, minutes=60):
     duration = get_duration(visit)
     print(duration)
     return duration.total_seconds() > 3600
+
+
 def storage_information_view(request):
     non_closed_visits = []
-    
+
     active_passcards = Passcard.objects.filter(is_active=True)
     now = datetime.datetime.now().astimezone()
     print(now)
@@ -49,7 +52,6 @@ def storage_information_view(request):
             'duration': time_inside
         })
     print(non_closed_visits)
-
 
     context = {
         'non_closed_visits': non_closed_visits,

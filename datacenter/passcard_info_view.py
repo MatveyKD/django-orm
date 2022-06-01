@@ -20,8 +20,8 @@ def passcard_info_view(request, passcode):
         hours = visit_duration.total_seconds() // 3600
         minutes = visit_duration.total_seconds() // 60
         this_passcard_visits.append({
-            'entered_at':visit.entered_at,
-            'duration':f'{hours}:{minutes}',
+            'entered_at': visit.entered_at,
+            'duration': f'{hours}:{minutes}',
             'is_strange': visit.is_long()
         })
     print(this_passcard_visits)
