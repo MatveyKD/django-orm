@@ -9,8 +9,6 @@ import datetime
 def storage_information_view(request):
     non_closed_visits = []
 
-    active_passcards = Passcard.objects.filter(is_active=True)
-
     visits = Visit.objects.filter(leaved_at=None)
     for visit in visits:
         located_time = visit.get_duration()
