@@ -32,7 +32,7 @@ class Visit(models.Model):
         )
 
     def is_long(self, minutes=60):
-        return get_duration(self).total_seconds() > 3600
+        return get_duration(self).total_seconds() > minutes * 60
 
     def get_duration(self):
         return get_duration(self)
